@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 // ⚠️ NOTE: We don't use @ckeditor/ckeditor5-build-classic any more!
 // Since we're building CKEditor 5 from source, we use the source version of ClassicEditor.
 import { ClassicEditor } from '@ckeditor/ckeditor5-editor-classic'
@@ -20,4 +20,4 @@ const editorConfig = {
     items: ['undo', 'redo'],
   },
 }
-</script>
+</script> --> 

@@ -3,6 +3,8 @@ import BarSingle from '../views/BarSingle.vue'
 import BarMulti from '../views/BarMulti.vue'
 import PieChart from '../views/PieChart.vue'
 import CKEditorView from '../views/CKEditorView.vue' // CKEditorView 컴포넌트 import
+import LoadingBar from '../views/LoadingBar.vue'
+import AlertModal from '../views/AlertModal.vue'
 
 const routes = [
   // { path: '/', redirect: '/bar-single' },
@@ -15,11 +17,27 @@ const routes = [
     name: 'CKEditorView', // 새로운 이름
     component: CKEditorView, // 새로운 컴포넌트
   },
+  {
+    path: '/LoadingBar', // 새로운 경로
+    name: 'LoadingBar', // 새로운 이름
+    component: LoadingBar, // 새로운 컴포넌트
+  },
+  {
+    path: '/AlertModal', // 새로운 경로
+    name: 'AlertModal', // 새로운 이름
+    component: AlertModal, // 새로운 컴포넌트
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
 })
+
+router.beforeEach((to, from) => {
+});
+
+router.afterEach(() => {
+});
 
 export default router

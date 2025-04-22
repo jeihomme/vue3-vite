@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 // import vueDevTools from 'vite-plugin-vue-devtools'
-import obfuscator from 'rollup-plugin-obfuscator'
+// import obfuscator from 'rollup-plugin-obfuscator'
 // import ckeditor5 from '@ckeditor/vite-plugin-ckeditor5'
 import { createRequire } from 'node:module'
 const require = createRequire(import.meta.url)
@@ -15,14 +15,14 @@ export default defineConfig({
     vueJsx(),
     // vueDevTools(),
     // rollup-plugin-obfuscator로 코드 난독화
-    obfuscator({
-      compact: true, // 공백 및 여백 제거
-      controlFlowFlattening: true, // 제어 흐름 난독화
-      deadCodeInjection: true, // 사용되지 않는 코드 삽입
-      debugProtection: true, // 디버깅 방지
-      stringArray: true, // 문자열을 배열로 변환
-      stringArrayThreshold: 100, // 문자열 배열화 비율 (75% 이상을 배열로 변환)
-    }),
+    // obfuscator({
+    //   compact: true, // 공백 및 여백 제거
+    //   controlFlowFlattening: true, // 제어 흐름 난독화
+    //   deadCodeInjection: true, // 사용되지 않는 코드 삽입
+    //   debugProtection: true, // 디버깅 방지
+    //   stringArray: true, // 문자열을 배열로 변환
+    //   stringArrayThreshold: 100, // 문자열 배열화 비율 (75% 이상을 배열로 변환)
+    // }),
     // ckeditor5({ theme: require.resolve('@ckeditor/ckeditor5-theme-lark') }),
   ],
   resolve: {

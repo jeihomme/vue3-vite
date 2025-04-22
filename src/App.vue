@@ -4,7 +4,9 @@
       <router-link to="/bar-single">단일 색상 막대그래프</router-link> |
       <router-link to="/bar-multi">다중 색상 막대그래프</router-link> |
       <router-link to="/pie">원형 그래프</router-link> |
-      <router-link to="/ckeditor">CKEditor</router-link>
+      <router-link to="/ckeditor">CKEditor</router-link> |
+      <router-link to="/LoadingBar">LoadingBar</router-link> |
+      <router-link to="/AlertModal">AlertModal</router-link> |
     </nav>
     <router-view />
   </div>
