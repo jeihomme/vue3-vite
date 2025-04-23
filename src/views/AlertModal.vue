@@ -1,20 +1,18 @@
 <template>
-  <button @click="showAlert">알림 표시</button>
-  <button @click="showConfirmation">확인 모달 표시</button>
+  <button @click="showAlert">기본 알림창 표시</button>
+  <button @click="showConfirmation">테스트 알림창 표시</button>
 </template>
 
-<script setup>
-import { useSwal } from 'vue-sweetalert2';
+<script setup lang="ts">
+import { getCurrentInstance } from 'vue';
 
-const swal = useSwal();
+const { proxy } = getCurrentInstance();
 
 const showAlert = () => {
-  swal.fire({
-    title: '알림',
-    text: '이것은 간단한 알림 메시지입니다.',
-  });
+  proxy.$swal('안녕하세요!');
 };
 
+const swal = proxy.$swal;
 const showConfirmation = () => {
   swal.fire({
     title: '확인',

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import Ckeditor from '../components/Ckeditor.vue';
 </script>
 

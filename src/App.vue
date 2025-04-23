@@ -1,24 +1,16 @@
-<template>
-  <div>
-    <nav>
-      <router-link to="/bar-single">단일 색상 막대그래프</router-link> |
-      <router-link to="/bar-multi">다중 색상 막대그래프</router-link> |
-      <router-link to="/pie">원형 그래프</router-link> |
-      <router-link to="/ckeditor">CKEditor</router-link> |
-      <router-link to="/LoadingBar">LoadingBar</router-link> |
-      <router-link to="/AlertModal">AlertModal</router-link> |
-    </nav>
-    <router-view />
-  </div>
-</template>
+<script setup>
+import { RouterView } from 'vue-router';
+</script>
 
-<style scoped>
-nav {
-  padding: 1rem;
-  text-align: center;
-}
-nav a {
-  margin: 0 1rem;
-  text-decoration: none;
-}
-</style>
+<template>
+  
+  <ul>
+    <li><RouterLink :to="{ name: 'Editor' }">Editor</RouterLink></li>
+    <!-- <li><RouterLink :to="{ name: 'Preview' }">GoPreview</RouterLink></li> -->
+    <li><RouterLink :to="{ name: 'LoadingBar' }">LoadingBar</RouterLink></li>
+    <li><RouterLink :to="{ name: 'AlertModal' }">AlertModal</RouterLink></li>
+    <li><RouterLink :to="{ name: 'Chart' }">Chart</RouterLink></li>
+  </ul>
+  
+  <RouterView />
+</template>

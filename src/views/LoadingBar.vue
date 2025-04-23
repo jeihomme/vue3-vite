@@ -1,41 +1,37 @@
 <template>
-  <div>
-    <button @click="startLoading">데이터 로딩 시작</button>
-    <button @click="stopLoading">데이터 로딩 종료</button>
-    </div>
+  <!-- <div class="vl-parent"> -->
+      <LoadingBar
+        v-model:active="isLoading"
+        :on-cancel="onCancel"
+      />
+               <!-- :can-cancel="true" -->
+               <!-- :is-full-page="fullPage" -->
+
+      <!-- <label><input type="checkbox" v-model="fullPage">Full page?</label> -->
+      <button @click.prevent="doAjax">fetch Data</button>
+  <!-- </div> -->
 </template>
 
-<script setup>
-import { ref, getCurrentInstance } from 'vue';
+<script setup lang="ts">
+  import { onMounted, ref } from 'vue';
 
-const { proxy } = getCurrentInstance();
-const isLoading = ref(false);
+  const isLoading = ref(false);
+  // const fullPage = ref(true)
 
-const startLoading = () => {
-  isLoading.value = true;
-  proxy.$loading.show({
-    container: null, // 전체 화면에 표시
-    canCancel: false, // 로딩 중 취소 불가능
-    color: 'green', // 로딩 스피너 색상
-    loader: 'spinner', // 로딩 스피너 종류 (기본값)
-    text: '데이터 로딩 중...', // 로딩 메시지
-    zIndex: 9999, // 다른 요소 위에 표시하기 위한 z-index 값
-    isFullPage: true, // 전체 페이지 dim 처리
-  });
+  const doAjax = () => {
+      isLoading.value = true;
+      // simulate AJAX
+      console.log('User start the loader.');
+      setTimeout(() => {
+          isLoading.value = false
+      }, 5000);
+  };
 
-  // 가상의 데이터 로딩 (2초 후 종료)
-  setTimeout(() => {
-    stopLoading();
-    // 실제 데이터 로딩 로직
-  }, 2000);
-};
+  const onCancel = () => {
+      console.log('User cancelled the loader.');
+  };
 
-const stopLoading = () => {
-  isLoading.value = false;
-  proxy.$loading.hide();
-};
+  // onMounted(()=>{
+  //   doAjax();
+  // });
 </script>
-
-<style scoped>
-/* 필요에 따라 스타일 추가 */
-</style>
