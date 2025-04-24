@@ -1,7 +1,7 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+// import { RouterLink } from 'vue-router';
 
-import { component as ckeditor } from '@ckeditor/ckeditor5-vue';
+import { /* @vite-ignore */ component as ckeditor } from '@ckeditor/ckeditor5-vue';
 
 // 中文包
 import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn';
