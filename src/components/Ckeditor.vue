@@ -4,19 +4,19 @@
 import { /* @vite-ignore */ component as ckeditor } from '@ckeditor/ckeditor5-vue';
 
 // 中文包
-import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn';
+// import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn';
 
 // 經典版型
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-import { storeToRefs } from 'pinia';
-import useCkeditor from '../stores/ckeditor';
+// import { storeToRefs } from 'pinia';
+// import useCkeditor from '../stores/ckeditor';
 
-import MyAdapterPlugin from '../utlis/myUploadAdapter';
+// import MyAdapterPlugin from '../utlis/myUploadAdapter';
 
-const ckeditorStore = useCkeditor();
+// const ckeditorStore = useCkeditor();
 
-const { editorResult } = storeToRefs(ckeditorStore);
+// const { editorResult } = storeToRefs(ckeditorStore);
 
 // 控制 ckeditor 的啟用
 defineProps({
@@ -33,9 +33,9 @@ const editor = ClassicEditor;
 
 // 存放 Editor 的設定 (Ex: 工具列)
 const editorConfig = {
-  extraPlugins: [MyAdapterPlugin],
+  // extraPlugins: [MyAdapterPlugin],
   // 語言 中文
-  language: 'zh-cn',
+  language: 'ko',
 
   // 工具列
   toolbar: {
@@ -45,6 +45,8 @@ const editorConfig = {
       'bold',
       'italic',
       'link',
+      // '|',
+      '|',
       'bulletedList',
       'numberedList',
       '|',
@@ -55,6 +57,7 @@ const editorConfig = {
       'blockQuote',
       'insertTable',
       'mediaEmbed',
+      '|',
       'undo',
       'redo'
     ]
@@ -99,8 +102,8 @@ const onEditorDestroy = () => {
       @blur="onEditorBlur"
       @input="onEditorInput"
       @destroy="onEditorDestroy"
-      v-model="editorResult"
     />
+    <!-- v-model="editorResult" -->
   </div>
 </template>
 

@@ -1,32 +1,26 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    // "useDefineForClassFields": true,
     "module": "esnext",
+    "moduleResolution": "node",
     "lib": ["dom", "esnext"],
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    // "moduleResolution": "node",
-    "moduleResolution": "bundler", //
-    "allowImportingTsExtensions": true, //
-    "resolveJsonModule": true, //
-    "isolatedModules": true, //
-    "noEmit": true, //
-    "jsx": "preserve", //
-
-    /* Linting */
     "strict": true,
-    "noUnusedLocals": true, //
-    "noUnusedParameters": true, //
-    "noFallthroughCasesInSwitch": true, //
+    "jsx": "preserve",
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
