@@ -6,7 +6,6 @@ import Editor from '../views/Editor.vue'
 import Preview from '../views/Preview.vue'
 import LoadingBar from '../views/LoadingBar.vue'
 import AlertModal from '../views/AlertModal.vue'
-// eslint-disable-next-line semi
 import Chart from '../views/Chart.vue'
 
 const BASE_URL = import.meta.BASE_URL || '/' // import.meta.env로 변경
