@@ -23,14 +23,14 @@
       >
         {{ item.title }}
       </div>
-      <div ref="chartDivs" :style="{ flexGrow: 1, height: '100%' }"></div>
+      <div ref="chartDivs" :style="{ flexGrow: 1, height: '300px' }"></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import * as echarts from 'echarts'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, nextTick } from 'vue'
 
 const chartDivs = ref<HTMLElement[]>([])
 
@@ -74,7 +74,8 @@ const data = [
 const barColor = '#5470c6' // 통일된 막대 색상
 const titleColors = ['#a9d18e', '#49a09d', '#5a8f7b'] // 제목 영역 배경색
 
-onMounted(() => {
+onMounted(async () => {
+  await nextTick() // DOM이 완전히 렌더링될 때까지 대기
   chartDivs.value.forEach((chartDiv, index) => {
     const barChart = echarts.init(chartDiv)
     const option = {

@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import DataGridView from '../views/DataGridView.vue'
-import DataGridType2View from '../views/DataGridType2View.vue'
+import { useLoading } from 'vue-loading-overlay' // vue-loading-overlay 사용
 import DataGridType3View from '../views/DataGridType3View.vue'
 import Editor from '../views/Editor.vue'
-import Preview from '../views/Preview.vue'
 import LoadingBar from '../views/LoadingBar.vue'
 import AlertModal from '../views/AlertModal.vue'
 import Chart from '../views/Chart.vue'
+import AxiosExam from '../views/AxiosExam.vue'
+import VuexExam from '../views/VuexExam.vue'
+import LodashExam from '../views/LodashExam.vue'
+import VeeValidateExam from '../views/VeeValidateExam.vue'
 
 const BASE_URL = import.meta.BASE_URL || '/' // import.meta.env로 변경
 
@@ -15,17 +17,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/DataGridView'
-    },
-    {
-      path: '/DataGridView',
-      name: 'DataGridView',
-      component: DataGridView
-    },
-    {
-      path: '/DataGridType2View',
-      name: 'DataGridType2View',
-      component: DataGridType2View
+      redirect: '/DataGridType3View'
     },
     {
       path: '/DataGridType3View',
@@ -36,11 +28,6 @@ const router = createRouter({
       path: '/Editor',
       name: 'Editor',
       component: Editor
-    },
-    {
-      path: '/preview',
-      name: 'Preview',
-      component: Preview
     },
     {
       path: '/LoadingBar',
@@ -57,7 +44,36 @@ const router = createRouter({
       name: 'Chart',
       component: Chart
     },
+    {
+      path: '/axios-exam',
+      name: 'AxiosExam',
+      component: AxiosExam,
+    },
+    {
+      path: '/VuexExam',
+      name: 'VuexExam',
+      component: VuexExam,
+    },
+    {
+      path: '/LodashExam',
+      name: 'LodashExam',
+      component: LodashExam,
+    },
+    {
+      path: '/VeeValidateExam',
+      name: 'VeeValidateExam',
+      component: VeeValidateExam,
+    },
   ]
+})
+
+// 로딩 표시를 위한 라우터 훅 추가
+router.beforeEach((to, from, next) => {
+  const loader = useLoading().show() // 로딩 오버레이 표시
+  setTimeout(() => {
+    loader.hide() // 2초 후 로딩 오버레이 숨김
+    next() // 라우팅 진행
+  }, 300)
 })
 
 export default router

@@ -32,6 +32,21 @@ export default defineConfig({
     compression({ algorithm: 'gzip' }), // Gzip 압축 활성화
     visualizer({ open: true }), // 번들 크기 시각화
   ],
+  server: {
+    open: true,
+    host: '0.0.0.0',
+    port: 8088,
+    proxy: {
+      '/api': {
+        // target: 'https://gemini.google.com', // 요청을 보낼 실제 서버
+        // target: 'https://localhost:8080', // 요청을 보낼 실제 서버
+        target: 'https://jsonplaceholder.typicode.com', // 요청을 보낼 실제 서버
+        
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, ''), // '/api'를 제거
+      },
+    },
+  },
   base: '/', // BASE_URL 설정 (기본값은 '/')
   build: {
     outDir: 'dist',
@@ -60,9 +75,4 @@ export default defineConfig({
       }
     },
   },
-  server: {
-    open: true,
-    host: '0.0.0.0',
-    port: 8088
-  }
 });

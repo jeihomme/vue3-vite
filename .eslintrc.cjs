@@ -43,12 +43,20 @@ module.exports = {
 
     // 1. 코드 일관성 유지
     'quotes': ['error', 'single'], // 작은따옴표 사용 강제
-    'indent': ['error', 2], // 2칸 들여쓰기 강제
+    // 'indent': ['error', 2], // 2칸 들여쓰기 강제
     'no-console': 'warn', // console.log 사용 시 경고
     'no-debugger': 'error', // debugger 사용 금지
+    'no-unused-vars': [
+      'warn',
+      {
+        vars: 'all', // 모든 변수 체크
+        args: 'after-used', // 사용된 인자 체크
+        ignoreRestSiblings: true // 나머지 형제 무시
+      }
+    ],
 
     // 2. Vue 관련 규칙
-    'vue/html-indent': ['error', 2], // HTML 들여쓰기 2칸
+    // 'vue/html-indent': ['error', 2], // HTML 들여쓰기 2칸
     'vue/max-attributes-per-line': ['error', { singleline: 3 }], // 한 줄에 최대 3개의 속성
     'vue/singleline-html-element-content-newline': 'off' // 단일 줄 HTML 요소의 줄바꿈 비활성화
   }

@@ -23,13 +23,16 @@ import { RouterView, RouterLink } from 'vue-router';
     <div class="layout">
       <aside class="sidebar">
         <ul class="sidebar-list">
-          <li><RouterLink :to="{ name: 'DataGridView' }" class="sidebar-link">DataGrid</RouterLink></li>
-          <li><RouterLink :to="{ name: 'DataGridType2View' }" class="sidebar-link">DataGridType2</RouterLink></li>
           <li><RouterLink :to="{ name: 'DataGridType3View' }" class="sidebar-link">DataGridType3</RouterLink></li>
           <li><RouterLink :to="{ name: 'Editor' }" class="sidebar-link">Editor</RouterLink></li>
           <li><RouterLink :to="{ name: 'LoadingBar' }" class="sidebar-link">LoadingBar</RouterLink></li>
           <li><RouterLink :to="{ name: 'AlertModal' }" class="sidebar-link">AlertModal</RouterLink></li>
           <li><RouterLink :to="{ name: 'Chart' }" class="sidebar-link">Chart</RouterLink></li>
+          <li><RouterLink :to="{ name: 'AxiosExam' }" class="sidebar-link">AxiosExam</RouterLink></li>
+          <li><RouterLink :to="{ name: 'VuexExam' }" class="sidebar-link">VuexExam</RouterLink></li>
+          <li><RouterLink :to="{ name: 'LodashExam' }" class="sidebar-link">LodashExam</RouterLink></li>
+          <li><RouterLink :to="{ name: 'VeeValidateExam' }" class="sidebar-link">VeeValidateExam</RouterLink></li>
+          
         </ul>
       </aside>
       <main class="content">

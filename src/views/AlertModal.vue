@@ -1,42 +1,130 @@
 <template>
-  <button @click="showAlert">기본 알림창 표시</button>
-  <button @click="showConfirmation">테스트 알림창 표시</button>
+
+  <h4>VueSweetalert2</h4>
+  <button @click="showAlert('swal')">확인</button>
+  <button @click="showConfirmation('swal')">컨펌</button>
+
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance } from 'vue';
+import { getCurrentInstance, onMounted } from 'vue';
 
 const { proxy } = getCurrentInstance();
 
-const showAlert = () => {
-  proxy.$swal('안녕하세요!');
+const showAlert = (type) => {
+  if( type == 'swal' ){
+    // proxy.$swal('안녕하세요!');
+    proxy.$swal.fire({
+      title: '안녕하세요!',
+      text: '이 팝업은 커스텀 애니메이션을 사용합니다.',
+      // icon: 'info',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown', // 팝업 표시 애니메이션
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp', // 팝업 숨김 애니메이션
+      },
+      // customClass: {
+      //   confirmButton: 'custom-confirm-button', // 확인 버튼 클래스
+      //   cancelButton: 'custom-cancel-button',   // 취소 버튼 클래스 (필요 시)
+      // },
+      buttonsStyling: false, // SweetAlert2 기본 버튼 스타일 비활성화
+    })
+  }
 };
 
 const swal = proxy.$swal;
-const showConfirmation = () => {
-  swal.fire({
-    title: '확인',
-    text: '정말로 삭제하시겠습니까?',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: '네, 삭제할게요!',
-    cancelButtonText: '아니요, 취소할게요!',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // 확인 버튼 클릭 시 실행할 코드
-      swal.fire(
-        '삭제 완료!',
-        '성공적으로 삭제되었습니다.',
-        'success'
-      );
-    } else if (result.dismiss === swal.DismissReason.cancel) {
-      // 취소 버튼 클릭 시 실행할 코드
-      swal.fire(
-        '취소됨',
-        '삭제가 취소되었습니다.',
-        'info'
-      );
-    }
-  });
+const showConfirmation = (type) => {
+  
+  if( type == 'swal' ){
+    swal.fire({
+      title: '확인',
+      text: '정말로 삭제하시겠습니까?',
+      // icon: 'warning',
+      showCancelButton: true,
+      // confirmButtonText: '네, 삭제할게요!',
+      // cancelButtonText: '아니요, 취소할게요!',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown', // 팝업 표시 애니메이션
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp', // 팝업 숨김 애니메이션
+      },
+      customClass: {
+        confirmButton: 'custom-confirm-button', // 확인 버튼 클래스
+        cancelButton: 'custom-cancel-button',   // 취소 버튼 클래스 (필요 시)
+      },
+      buttonsStyling: false, // SweetAlert2 기본 버튼 스타일 비활성화
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // 확인 버튼 클릭 시 실행할 코드
+        swal.fire({
+          title: '삭제 완료!',
+          text: '성공적으로 삭제되었습니다.',
+          icon: 'success',
+          showClass: {
+            popup: 'animate__animated animate__zoomIn', // 팝업 표시 애니메이션
+          },
+          hideClass: {
+            popup: 'animate__animated animate__zoomOut', // 팝업 숨김 애니메이션
+          },
+          customClass: {
+            confirmButton: 'custom-confirm-button', // 확인 버튼 클래스
+            cancelButton: 'custom-cancel-button',   // 취소 버튼 클래스 (필요 시)
+          },
+          buttonsStyling: false, // SweetAlert2 기본 버튼 스타일 비활성화
+        })
+      } else if (result.dismiss === swal.DismissReason.cancel) {
+        // 취소 버튼 클릭 시 실행할 코드
+        swal.fire({
+          title: '삭제 완료!',
+          text: '성공적으로 삭제되었습니다.',
+          // icon: 'error',
+          showClass: {
+            popup: 'animate__animated animate__zoomIn', // 팝업 표시 애니메이션
+          },
+          hideClass: {
+            popup: 'animate__animated animate__zoomOut', // 팝업 숨김 애니메이션
+          },
+          buttonsStyling: false, // SweetAlert2 기본 버튼 스타일 비활성화
+        })
+      }
+    });
+  }
+
 };
+
+onMounted(() => {
+});
 </script>
+<style>
+/* 확인 버튼 스타일 */
+.custom-confirm-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.custom-confirm-button:hover {
+  background-color: #0056b3;
+}
+
+/* 취소 버튼 스타일 (필요 시) */
+.custom-cancel-button {
+  background-color: #ccc;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.custom-cancel-button:hover {
+  background-color: #999;
+}
+</style>

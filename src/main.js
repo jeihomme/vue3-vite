@@ -3,6 +3,7 @@ import './style.css'
 // import { createPinia } from 'pinia'
 
 import router from './router'
+import store from './store'
 import App from './App.vue'
 
 import Loading from 'vue-loading-overlay'
@@ -14,6 +15,7 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 const app = createApp(App)
 // app.use(createPinia())
 app.use(router)
+app.use(store)
 app.use(VueSweetalert2)
 
 // // 전역 컴포넌트로 등록
