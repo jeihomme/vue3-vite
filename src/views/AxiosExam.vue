@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Axios Example</h1>
-    <button @click="getData">Fetch Data</button>
+    <button @click="getData">getData</button>
     <div v-if="error">{{ error }}</div>
     <ul v-else>
       <li v-for="item in data" :key="item.id">{{ item.title }}</li>
@@ -13,8 +13,15 @@
 import { ref } from 'vue'
 import axios from '../plugins/axios' // axios 인스턴스 가져오기
 
+// 데이터 타입 정의
+interface Item {
+  id: number;
+  title: string;
+}
+
 // 상태 변수 정의
-const data = ref([]) // Todo 배열 타입 제거
+// data를 ref로 선언하고 타입 지정
+const data = ref<Item[]>([]);
 const loading = ref(false)
 const error = ref<string | null>(null)
 

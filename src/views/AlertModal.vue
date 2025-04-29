@@ -1,49 +1,32 @@
 <template>
-
   <h4>VueSweetalert2</h4>
   <button @click="showAlert('swal')">확인</button>
   <button @click="showConfirmation('swal')">컨펌</button>
-
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, onMounted } from 'vue';
+import Swal from 'sweetalert2'; // SweetAlert2 직접 가져오기
 
-const { proxy } = getCurrentInstance();
-
-const showAlert = (type) => {
-  if( type == 'swal' ){
-    // proxy.$swal('안녕하세요!');
-    proxy.$swal.fire({
+const showAlert = (type: any) => {
+  if (type === 'swal') {
+    Swal.fire({
       title: '안녕하세요!',
       text: '이 팝업은 커스텀 애니메이션을 사용합니다.',
-      // icon: 'info',
-      showClass: {
-        popup: 'animate__animated animate__fadeInDown', // 팝업 표시 애니메이션
-      },
-      hideClass: {
-        popup: 'animate__animated animate__fadeOutUp', // 팝업 숨김 애니메이션
-      },
-      // customClass: {
-      //   confirmButton: 'custom-confirm-button', // 확인 버튼 클래스
-      //   cancelButton: 'custom-cancel-button',   // 취소 버튼 클래스 (필요 시)
-      // },
+      icon: 'info',
       buttonsStyling: false, // SweetAlert2 기본 버튼 스타일 비활성화
-    })
+    });
   }
 };
 
-const swal = proxy.$swal;
-const showConfirmation = (type) => {
-  
-  if( type == 'swal' ){
-    swal.fire({
+const showConfirmation = (type: any) => {
+  if (type === 'swal') {
+    Swal.fire({
       title: '확인',
       text: '정말로 삭제하시겠습니까?',
-      // icon: 'warning',
+      icon: 'warning',
       showCancelButton: true,
-      // confirmButtonText: '네, 삭제할게요!',
-      // cancelButtonText: '아니요, 취소할게요!',
+      confirmButtonText: '네, 삭제할게요!',
+      cancelButtonText: '아니요, 취소할게요!',
       showClass: {
         popup: 'animate__animated animate__fadeInDown', // 팝업 표시 애니메이션
       },
@@ -55,13 +38,12 @@ const showConfirmation = (type) => {
         cancelButton: 'custom-cancel-button',   // 취소 버튼 클래스 (필요 시)
       },
       buttonsStyling: false, // SweetAlert2 기본 버튼 스타일 비활성화
-    }).then((result) => {
+    }).then((result: any) => {
       if (result.isConfirmed) {
-        // 확인 버튼 클릭 시 실행할 코드
-        swal.fire({
+        Swal.fire({
           title: '삭제 완료!',
           text: '성공적으로 삭제되었습니다.',
-          icon: 'success',
+          // icon: 'success',
           showClass: {
             popup: 'animate__animated animate__zoomIn', // 팝업 표시 애니메이션
           },
@@ -70,15 +52,13 @@ const showConfirmation = (type) => {
           },
           customClass: {
             confirmButton: 'custom-confirm-button', // 확인 버튼 클래스
-            cancelButton: 'custom-cancel-button',   // 취소 버튼 클래스 (필요 시)
           },
           buttonsStyling: false, // SweetAlert2 기본 버튼 스타일 비활성화
-        })
-      } else if (result.dismiss === swal.DismissReason.cancel) {
-        // 취소 버튼 클릭 시 실행할 코드
-        swal.fire({
-          title: '삭제 완료!',
-          text: '성공적으로 삭제되었습니다.',
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire({
+          title: '삭제 취소',
+          text: '취소되었습니다.',
           // icon: 'error',
           showClass: {
             popup: 'animate__animated animate__zoomIn', // 팝업 표시 애니메이션
@@ -86,17 +66,16 @@ const showConfirmation = (type) => {
           hideClass: {
             popup: 'animate__animated animate__zoomOut', // 팝업 숨김 애니메이션
           },
-          buttonsStyling: false, // SweetAlert2 기본 버튼 스타일 비활성화
-        })
+          customClass: {
+            cancelButton: 'custom-cancel-button', // 취소 버튼 클래스
+          },
+        });
       }
     });
   }
-
 };
-
-onMounted(() => {
-});
 </script>
+
 <style>
 /* 확인 버튼 스타일 */
 .custom-confirm-button {

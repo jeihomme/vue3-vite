@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import obfuscator from 'rollup-plugin-obfuscator' // ESM 방식으로 가져오기
 import compression from 'vite-plugin-compression'
-import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -30,7 +29,6 @@ export default defineConfig({
       transformObjectKeys: false, // 객체 키 이름 변환 여부
     }),
     compression({ algorithm: 'gzip' }), // Gzip 압축 활성화
-    visualizer({ open: true }), // 번들 크기 시각화
   ],
   server: {
     open: true,
@@ -49,29 +47,29 @@ export default defineConfig({
   },
   base: '/', // BASE_URL 설정 (기본값은 '/')
   build: {
-    outDir: 'dist',
-    minify: 'terser',
+    outDir: 'dist', // 빌드 결과물이 저장될 디렉터리
+    minify: 'terser',  // Terser 사용
     terserOptions: {
       compress: {
-        drop_console: true,
-        dead_code: true,
+        drop_console: true, // console.log() 제거
+        dead_code: true,    // 사용되지 않는 코드 제거
       },
       mangle: {
         properties: {
-          regex: /^_/
+          regex: /^_/  // 프로퍼티 이름도 난독화 (옵션)
         },
       },
       output: {
-        beautify: false,
-        comments: false,
+        beautify: false,  // 압축된 코드로 출력
+        comments: false,  // 주석 제거
       },
     },
-    sourcemap: false,
+    sourcemap: false,  // 소스맵 비활성화 (디버깅 방지)
     rollupOptions: {
       output: {
-        chunkFileNames: 'assets/[name].[hash].js',
-        entryFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash].[ext]',
+        chunkFileNames: 'assets/[name].[hash].js',  // 청크 파일 이름에 해시 값 추가
+        entryFileNames: 'assets/[name].[hash].js',  // 엔트리 파일 이름에 해시 값 추가
+        assetFileNames: 'assets/[name].[hash].[ext]',  // 자산 파일 이름에 해시 값 추가
       }
     },
   },

@@ -1,12 +1,13 @@
 import { createStore } from 'vuex'
+import axios from '../plugins/axios' // axios 인스턴스 가져오기
 
-export interface State {
-  items: Array<{ id: number; name: string }>
-  loading: boolean
-  error: string | null
-}
+// export interface State {
+//   items: Array<{ id: number; name: string }>
+//   loading: boolean
+//   error: string | null
+// }
 
-const store = createStore<State>({
+const store = createStore({
   state: {
     items: [],
     loading: false,
@@ -28,8 +29,8 @@ const store = createStore<State>({
       commit('setLoading', true)
       commit('setError', null)
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/todos')
-        const data = await response.json()
+        const response = await axios.get('https://jsonplaceholder.typicode.com/todos') // API 호출
+        const data = await response.data // 응답 데이터
         commit('setItems', data.slice(0, 10)) // 10개의 데이터만 가져오기
       } catch (error) {
         commit('setError', 'Failed to fetch items')
