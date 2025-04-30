@@ -7,7 +7,6 @@ import globalProperties from '@/properties/globalProperties'; // globalPropertie
 import { VueGoodTable } from 'vue-good-table-next';
 import store from '@/store' // Vuex 스토어 가져오기
 
-
 import './style.css'
 import 'vue-loading-overlay/dist/css/index.css' // 로딩 오버레이 CSS import
 import 'sweetalert2/dist/sweetalert2.min.css'

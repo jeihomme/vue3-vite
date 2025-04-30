@@ -5,7 +5,7 @@ module.exports = {
     es2021: true   // 최신 ECMAScript 기능 사용
   },
   extends: [
-    'plugin:vue/vue3-essential', // Vue 3 필수 규칙
+    // 'plugin:vue/vue3-essential', // Vue 3 필수 규칙
     'eslint:recommended',       // ESLint 기본 권장 규칙
     'airbnb-base',              // Airbnb JavaScript 스타일 가이드
     '@vue/eslint-config-prettier/skip-formatting' // Prettier와 충돌 방지

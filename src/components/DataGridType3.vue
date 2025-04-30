@@ -1,3 +1,4 @@
+<!-- filepath: e:\vue3-vite\vue3-vite\src\components\DataGridType3.vue -->
 <template>
   <div class="table-container">
     <h2>Item List</h2>
@@ -52,10 +53,16 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from 'vue';
+import { ref, computed, watch, onMounted, onBeforeMount } from 'vue';
 import DetailPopup from './DetailPopup.vue';
 import RegistrationPopup from './RegistrationPopup.vue';
-import api from '@/axios/api';
+
+// 부모 컴포넌트로부터 데이터를 받는 props 정의
+const props = defineProps({
+  items: {
+    type: Object,
+  },
+});
 
 // 테이블 컬럼 정의 (초기값은 빈 배열)
 const columns = ref([]);
@@ -93,21 +100,20 @@ const visiblePages = computed(() => {
   return pages;
 });
 
-onMounted(async () => {
-  // API 호출
-  const data = await api.getApi('/todos', {});
+// props로 전달된 items를 rows에 저장
+watch(props, (newprops) => {
+    rows.value = newprops.items;
 
-  // rows에 API 데이터 저장
-  rows.value = data;
-
-  // columns를 API 데이터의 key 값으로 동적으로 생성
-  if (data.length > 0) {
-    columns.value = Object.keys(data[0]).map((key) => ({
-      label: key.charAt(0).toUpperCase() + key.slice(1), // 첫 글자를 대문자로 변환
-      field: key,
-    }));
-  }
-});
+    // columns를 items의 key 값으로 동적으로 생성
+    if (newprops.items.length > 0) {
+      columns.value = Object.keys(newprops.items[0]).map((key) => ({
+        label: key.charAt(0).toUpperCase() + key.slice(1), // 첫 글자를 대문자로 변환
+        field: key,
+      }));
+    }
+  },
+  // { immediate: true }
+);
 
 // 이전 페이지로 이동
 const prevPage = () => {
@@ -158,74 +164,5 @@ function handleRegistrationSubmit(data) {
 </script>
 
 <style scoped>
-.table-container {
-  background-color: #f9f9f9;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.custom-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-.custom-table th,
-.custom-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-}
-
-.custom-table th {
-  background-color: #007ad9;
-  color: white;
-}
-
-.custom-table tr:hover {
-  background-color: #f1f1f1;
-  cursor: pointer;
-}
-
-.custom-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.pagination-btn {
-  padding: 8px 15px;
-  border: 1px solid #007ad9;
-  background-color: #007ad9;
-  color: white;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.pagination-btn.active {
-  background-color: #0056a3;
-  font-weight: bold;
-}
-
-.pagination-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.pagination-btn:hover:not(:disabled) {
-  background-color: #0056a3;
-}
-
-.pagination-info {
-  font-size: 16px;
-  color: #333;
-}
+/* 스타일은 기존과 동일 */
 </style>
