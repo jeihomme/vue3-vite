@@ -1,10 +1,14 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import obfuscator from 'rollup-plugin-obfuscator' // ESM 방식으로 가져오기
 import compression from 'vite-plugin-compression'
+import path from 'path';
 
 // https://vitejs.dev/config/
-export default defineConfig({
+// export default defineConfig({
+export default ({ mode }) => {
+  const env = loadEnv(mode, process.cwd());
+  return defineConfig({
   plugins: [
     vue(),
     // rollup-plugin-obfuscator로 코드 난독화
@@ -30,22 +34,25 @@ export default defineConfig({
     }),
     compression({ algorithm: 'gzip' }), // Gzip 압축 활성화
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'), // '@'를 'src' 디렉토리로 매핑
+    },
+  },
   server: {
     open: true,
     host: '0.0.0.0',
     port: 8088,
     proxy: {
-      '/api': {
-        // target: 'https://gemini.google.com', // 요청을 보낼 실제 서버
-        // target: 'https://localhost:8080', // 요청을 보낼 실제 서버
-        target: 'https://jsonplaceholder.typicode.com', // 요청을 보낼 실제 서버
+      '/todos': {
+        target: env.VITE_API_URL, // 요청을 보낼 실제 서버
         
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, ''), // '/api'를 제거
       },
     },
   },
-  base: '/', // BASE_URL 설정 (기본값은 '/')
+  // base: '/', // BASE_URL 설정 (기본값은 '/')
   build: {
     outDir: 'dist', // 빌드 결과물이 저장될 디렉터리
     minify: 'terser',  // Terser 사용
@@ -73,4 +80,5 @@ export default defineConfig({
       }
     },
   },
-});
+})
+}

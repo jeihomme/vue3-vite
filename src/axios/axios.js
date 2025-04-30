@@ -2,13 +2,12 @@ import axios from 'axios'
 import { useLoading } from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css' // CSS 파일 추가
 
-// 로딩 오버레이 초기화
-let loader = null
+let loader = null // 로딩 오버레이 초기화
+const timeout = 20 * 1000 // 요청 타임아웃 설정 (20초)
 
 // Axios 기본 설정
 const instance = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com', // 기본 API URL
-  timeout: 5000, // 요청 타임아웃 설정 (5초)
+  timeout, // 요청 타임아웃 설정 (20초)
 })
 
 // 요청 전처리 설정

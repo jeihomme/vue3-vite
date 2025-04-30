@@ -72,6 +72,8 @@ const showConfirmation = (type: any) => {
         });
       }
     });
+  } else {
+    alert(  '확인 버튼 클릭');
   }
 };
 </script>

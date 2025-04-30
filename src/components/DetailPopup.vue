@@ -1,8 +1,10 @@
 <template>
   <div class="popup">
     <div class="popup-content">
-      <h2>Detail for {{ item.title }}</h2>
-      <p>ID: {{ item.id }}</p>
+      <h2>{{ item.title }}</h2>
+      <p>userId: {{ item.userId }}</p>
+      <p>id: {{ item.id }}</p>
+      <p>completed: {{ item.completed }}</p>
       <button @click="$emit('close')">Close</button>
     </div>
   </div>

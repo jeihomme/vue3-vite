@@ -9,62 +9,65 @@ import AxiosExam from '../views/AxiosExam.vue'
 import VuexExam from '../views/VuexExam.vue'
 import LodashExam from '../views/LodashExam.vue'
 import VeeValidateExam from '../views/VeeValidateExam.vue'
+import SsoExam from '../views/SsoExam.vue'
 
 const BASE_URL = import.meta.BASE_URL || '/' // import.meta.env로 변경
+const routes = [
+  {
+    path: '/',
+    name: 'SsoExam',
+    component: SsoExam,
+  },
+  {
+    path: '/DataGridType3View',
+    name: 'DataGridType3View',
+    component: DataGridType3View
+  },
+  {
+    path: '/Editor',
+    name: 'Editor',
+    component: Editor
+  },
+  {
+    path: '/LoadingBar',
+    name: 'LoadingBar',
+    component: LoadingBar
+  },
+  {
+    path: '/AlertModal',
+    name: 'AlertModal',
+    component: AlertModal
+  },
+  {
+    path: '/Chart',
+    name: 'Chart',
+    component: Chart
+  },
+  {
+    path: '/axios-exam',
+    name: 'AxiosExam',
+    component: AxiosExam,
+  },
+  {
+    path: '/VuexExam',
+    name: 'VuexExam',
+    component: VuexExam,
+  },
+  {
+    path: '/LodashExam',
+    name: 'LodashExam',
+    component: LodashExam,
+  },
+  {
+    path: '/VeeValidateExam',
+    name: 'VeeValidateExam',
+    component: VeeValidateExam,
+  },
+]
 
 const router = createRouter({
   history: createWebHistory(BASE_URL),
-  routes: [
-    {
-      path: '/',
-      redirect: '/DataGridType3View'
-    },
-    {
-      path: '/DataGridType3View',
-      name: 'DataGridType3View',
-      component: DataGridType3View
-    },
-    {
-      path: '/Editor',
-      name: 'Editor',
-      component: Editor
-    },
-    {
-      path: '/LoadingBar',
-      name: 'LoadingBar',
-      component: LoadingBar
-    },
-    {
-      path: '/AlertModal',
-      name: 'AlertModal',
-      component: AlertModal
-    },
-    {
-      path: '/Chart',
-      name: 'Chart',
-      component: Chart
-    },
-    {
-      path: '/axios-exam',
-      name: 'AxiosExam',
-      component: AxiosExam,
-    },
-    {
-      path: '/VuexExam',
-      name: 'VuexExam',
-      component: VuexExam,
-    },
-    {
-      path: '/LodashExam',
-      name: 'LodashExam',
-      component: LodashExam,
-    },
-    {
-      path: '/VeeValidateExam',
-      name: 'VeeValidateExam',
-      component: VeeValidateExam,
-    },
-  ]
+  routes
 })
 
 // 로딩 표시를 위한 라우터 훅 추가

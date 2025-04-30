@@ -1,5 +1,4 @@
 import { createStore } from 'vuex'
-import axios from '../plugins/axios' // axios 인스턴스 가져오기
 
 // export interface State {
 //   items: Array<{ id: number; name: string }>
@@ -12,6 +11,7 @@ const store = createStore({
     items: [],
     loading: false,
     error: null,
+    ssoAccount: {}, // SSO 계정 정보
   },
   mutations: {
     setItems(state, items) {
@@ -25,19 +25,19 @@ const store = createStore({
     },
   },
   actions: {
-    async fetchItems({ commit }) {
-      commit('setLoading', true)
-      commit('setError', null)
-      try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/todos') // API 호출
-        const data = await response.data // 응답 데이터
-        commit('setItems', data.slice(0, 10)) // 10개의 데이터만 가져오기
-      } catch (error) {
-        commit('setError', 'Failed to fetch items')
-      } finally {
-        commit('setLoading', false)
-      }
-    },
+    // async fetchItems({ commit }) {
+    //   commit('setLoading', true)
+    //   commit('setError', null)
+    //   try {
+    //     const response = await axios.get('https://jsonplaceholder.typicode.com/todos') // API 호출
+    //     const data = await response.data // 응답 데이터
+    //     commit('setItems', data.slice(0, 10)) // 10개의 데이터만 가져오기
+    //   } catch (error) {
+    //     commit('setError', 'Failed to fetch items')
+    //   } finally {
+    //     commit('setLoading', false)
+    //   }
+    // },
   },
 })
 

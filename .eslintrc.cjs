@@ -36,7 +36,9 @@ module.exports = {
       }
     ],
     'import/prefer-default-export': 'off', // 단일 export 허용
+    'prefer-destructuring': 'off', // 비구조화 할당 강제 비활성화
     'import/no-extraneous-dependencies': 'off', // 의존성 체크 비활성화
+    'object-shorthand': 'off', // 객체 축약형 비활성화
     'import/no-unresolved': 'off', // 경로 확인 비활성화
     'import/order': 'off', // import 순서 규칙 비활성화
     'spaced-comment': 'off', // 주석 스타일 규칙 비활성화

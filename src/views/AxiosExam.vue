@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from '../plugins/axios' // axios 인스턴스 가져오기
+import axios from '../axios/axios' // axios 인스턴스 가져오기
 
 // 데이터 타입 정의
 interface Item {
